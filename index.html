@@ -57,18 +57,18 @@
             const onChange = (event) => {
                 setAmount(event.target.value);
             };
-            const onFlip = (event) => {
+            const reset = () => setAmount(0);
+            const onFlip = () => {
                 reset();
                 setFlipped((current) => !current);
             };
-            const reset = () => setAmount(0);
             return (
-                <div>
+                <div> 
                     <h3>Inch : cm</h3>
                     <div>
                     <label for="Inch">Inch</label>
                         <input 
-                            value={flipped ? amount : amount / 2.54}
+                            value={flipped ? amount / 2.54 : amount}
                             id="inch" 
                             placeholder="Inch" 
                             type="number"
@@ -78,19 +78,19 @@
                     </div>
 
                     <div>
-                    <label for="Cm">Cm</label>
-                        <input 
-                            value={flipped ? amount * 2.54 : amount}
-                            id="cm" 
-                            placeholder="cm" 
-                            type="number"
-                            onChange={onChange} 
-                            disabled={!flipped} 
-                        />
+                    <label for="cm">cm</label>
+                    <input 
+                        value={flipped ? amount : amount * 2.54}  
+                        placeholder="cm"
+                        id="cm"
+                        type="number" 
+                        onChange={onChange}
+                        disabled={!flipped}    
+                    />
                     </div>
-                    <button onClick={reset}> RESET button </button>
-                    <button onClick={onFlip}>{flipped ? "Flip!" : "Turn back!"}</button>
-                </div>
+                    <button onClick={reset}>RESET button</button>
+                    <button onClick={onFlip}>{flipped ? "Turn Back!" : "Flip!"}</button>
+                </div>     
             );
         }
 
