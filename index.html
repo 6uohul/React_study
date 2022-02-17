@@ -4,28 +4,37 @@
         <div id="root"></div>
     </body>
     <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel"> 
     const root = document.getElementById("root");
-        function Btn({ btn, big }){
-            return <button style={{
+        function Btn({ btn, fontSize = 16 }){
+            return (
+            <button 
+                style={{
                 backgroundColor : "black",
                 color : "white",
                 padding:"10px 20px",
                 border : 0,
                 borderRadious: 10,
-                fontSize : big ? 20 : 15
+                fontSize
             }}>
                 {btn}
             </button>
+            );
         }
-            
+        Btn.propTypes = {
+            text: PropTypes.string.isRequired,
+            fontSize: PropTypes.number,
+        }
         function App() {
+            const [value, setValue] = React.useState("Save Button");
+            const changeValue = () => setValue("Revert Changes");
             return (
                 <div> 
-                    <Btn btn="Save Button" big={true}/>
-                    <Btn btn="Continue" big={false}/>
+                    <Btn btn={value} onClick ={changeValue} fontSize={18}/>
+                    <Btn btn="Continue" />
                 </div>     
             );
         }
