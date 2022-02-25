@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link, //브라우저 새로고침 없이 이동
+  //Link, //브라우저 새로고침 없이 이동
 } from "react-router-dom"; 
 import Detail from "./routes/Detail";
 import Home from "./routes/Home";
@@ -11,7 +11,7 @@ import Home from "./routes/Home";
 function App() {
   return <Router>
     <Switch>
-      <Route path="/movie">
+      <Route path="/movie/:id">
         <Detail />
       </Route>
       <Route path="/"> 

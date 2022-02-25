@@ -1,5 +1,24 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 function Detail(){
-    return <h1>Detail</h1>;
+    const { id } = useParams();
+
+    const getMovie = async () => {  //비동기
+        const json = await(
+            await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+        ).json();
+    }
+    useEffect(() => {
+        getMovie();
+    }, []);
+    return (
+        <div>
+            <h1>Detail</h1>
+                
+            <hr />
+        </div>
+    );
 }
 
 export default Detail;
